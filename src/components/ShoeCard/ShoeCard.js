@@ -36,9 +36,8 @@ const ShoeCard = ({
       <Wrapper>
         <ImageWrapper>
           <Image alt="" src={imageSrc} />
-          <Banner variant={variant} hidden={variant === 'default'}>
-            {variant === 'on-sale' ? 'Sale' : 'Just released!'}
-          </Banner>
+          {variant === 'on-sale' ? <SaleBanner>Sale</SaleBanner> : undefined}
+          {variant === 'new-release' ? <NewBanner>Just released!</NewBanner> : undefined}
         </ImageWrapper>
         <Spacer size={12} />
         <Row>
@@ -107,13 +106,20 @@ const Banner = styled.div`
   top: 12px;
   right: -4px;
   color: ${COLORS.white};
-  background-color: ${({variant}) => variant === 'on-sale' ? COLORS.primary : COLORS.secondary};
-  font-size: ${14/18}REM;
+  font-size: ${14/16}REM;
   font-weight: ${WEIGHTS.bold};
   height: 32px;
   line-height: 32px;
   padding: 0 10px;
   border-radius: 2px;
-`
+`;
+
+const SaleBanner = styled(Banner)`
+  background-color: ${COLORS.primary};
+`;
+
+const NewBanner = styled(Banner)`
+  background-color: ${COLORS.secondary};
+`;
 
 export default ShoeCard;
